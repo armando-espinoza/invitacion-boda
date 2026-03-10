@@ -1,0 +1,544 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&display=swap');
+
+/* Contenedor Principal */
+.Parent {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow-x: hidden;
+  padding-bottom: 50px;
+  background-color: #87a982; 
+  background-repeat: no-repeat;
+  background-size: 180px auto;
+  background-attachment: fixed; /* Mantiene las flores visibles durante el scroll */
+}
+
+.Parent::after {
+  content: "";
+  position: fixed; /* Cambiado de absolute a fixed */
+  bottom: 0;
+  right: 0;
+  width: 220px; /* Un poco más grande para que resalte */
+  height: 220px;
+  background-image: url('flor.png');
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 999; /* Máxima prioridad para estar sobre la ContentCard */
+  pointer-events: none; 
+  opacity: 0.95;
+}
+/* Imagen */
+.DIVImagen {
+  width: 100%;
+  height: 45vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: linear-gradient(to bottom, #eacbd5, #ffffff);
+}
+
+
+.Anillos {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  
+
+  image-rendering: -webkit-optimize-contrast; 
+  transform: translateZ(0); 
+
+  /* Desvanecimiento  */
+  mask-image: linear-gradient(
+    to bottom, 
+    black 0%, 
+    black 60%, 
+    rgba(0,0,0,0.6) 80%, 
+    rgba(0,0,0,0.2) 92%, 
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom, 
+    black 0%, 
+    black 60%, 
+    rgba(0,0,0,0.6) 80%, 
+    rgba(0,0,0,0.2) 92%, 
+    transparent 100%
+  );
+}
+
+.ContentCard {
+  width: 90%;
+  max-width: 420px;
+  margin: -80px auto 40px; 
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(15px) saturate(180%);
+  -webkit-backdrop-filter: blur(15px) saturate(180%);
+  border-radius: 40px;
+  padding: 40px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+  z-index: 10;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  text-align: center;
+  
+  /* CAMBIO CLAVE: Permitir que las flores sobresalgan para crear el marco */
+  overflow: visible; 
+  
+  /* Quitamos el background-image de aquí para usar los pseudo-elementos como marco real */
+  background-image: none; 
+}/* Flor Marco Superior Izquierda */
+.ContentCard::before {
+  content: "";
+  position: absolute;
+  top: -40px;    /* Sobresale hacia arriba */
+  left: -40px;   /* Sobresale hacia la izquierda */
+  width: 180px;  /* Tamaño del marco */
+  height: 180px;
+  background-image: url('flores.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: -1;   /* Queda por detrás de la tarjeta blanca pero sobre el fondo rosa */
+  pointer-events: none;
+}
+
+/* Flor Marco Inferior Derecha */
+.ContentCard::after {
+  content: "";
+  position: absolute;
+  bottom: -40px; /* Sobresale hacia abajo */
+  right: -40px;  /* Sobresale hacia la derecha */
+  width: 200px;
+  height: 200px;
+  background-image: url('rflores.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  z-index: -1;   /* Queda por detrás de la tarjeta */
+  pointer-events: none;
+  /* Opcional: un ligero filtro para que resalte más */
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+}
+/* Aseguramos que todo lo que esté dentro de la card esté por encima */
+.ContentCard > * {
+  position: relative;
+  z-index: 2;
+}
+/* 4. Tipografía Ajustada */
+.Nombres {
+  font-family: 'Ms Madi', cursive;
+  font-size: clamp(2.5rem, 10vw, 3.5rem);
+  color: #2d453e; /* Tono rosa viejo */
+  margin: 15px 0;
+  line-height: 1;
+}
+
+p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  color: #555;
+  text-transform: none;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+/* 5. Contador Compacto */
+#countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 25px 0;
+}
+
+#countdown span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  color: #b07d88;
+  display: block;
+}
+
+#countdown small {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  color: #999;
+}
+
+/* Botones Ajustados */
+.BotonEnlace {
+  display: inline-block; /* Crucial para que tome el padding y width */
+  width: 80%;
+  padding: 12px;
+  font-size: 0.9rem; /* Subí un poco el tamaño, 0.7 es muy pequeño */
+  margin-top: 15px;
+  background-color: #8da388;
+  color: white;          /* Color del texto */
+  text-decoration: none; /* Quita el subrayado de enlace */
+  text-align: center;    /* Centra el texto */
+  border-radius: 5px;    /* Bordes redondeados para estilo botón */
+  box-sizing: border-box; /* Asegura que el padding no rompa el ancho */
+}
+
+.BotonEnlace:hover {
+  background-color: #7a6565; /* Efecto al pasar el mouse */
+}
+.CodigoQr {
+  width: 120px;
+  margin-top: 20px;
+  border: 5px solid white;
+  border-radius: 10px;
+}
+
+.blur-blob, .blur-blob-2 {
+  position: absolute;
+  width: 450px; /* Más grandes para que el degradado sea más suave */
+  height: 450px;
+  background: radial-gradient(circle, rgba(255, 182, 193, 0.3) 0%, transparent 70%);
+  filter: blur(60px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.blur-blob { top: -100px; left: -100px; }
+.blur-blob-2 { bottom: 10%; right: -150px; animation-delay: -2s; }
+
+.ContentCard {
+  width: 88%;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.85); /* Un poco más opaco para que se lea bien */
+  backdrop-filter: blur(12px);
+  border-radius: 40px 40px 0 0; /* Redondeado arriba para abrazar la foto */
+  padding: 40px 25px;
+  margin-top: -50px; 
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  /* Sombra suave de diseño editorial */
+  box-shadow: 0 -15px 35px rgba(0, 0, 0, 0.03); 
+  z-index: 5;
+}
+
+.Parent::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.4;
+  background-image: radial-gradient(#b07d88 0.5px, transparent 0.5px);
+  background-size: 20px 20px; /* Crea una cuadrícula de puntos muy fina */
+  pointer-events: none;
+}
+#countdown span {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300; /* Más delgado se ve más caro */
+  color: #8d5d6a;
+  border-bottom: 1px solid rgba(141, 93, 106, 0.2);
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+}
+
+/* Suavizado de la imagen Hero */
+.HeroContainer {
+  width: 100%;
+  height: 50vh; /* Un poco más alto para lucir la imagen */
+  position: relative;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.Anillos {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* TRUCO SENIOR: Mejora la calidad visual de imágenes escaladas */
+  image-rendering: -webkit-optimize-contrast; 
+  filter: brightness(0.95) contrast(1.05); /* Le da un look más vibrante */
+  
+  /* Transición ultra suave: del negro (opaco) al transparente */
+  mask-image: linear-gradient(to bottom, 
+    black 0%, 
+    black 60%, 
+    rgba(0,0,0,0.5) 85%, 
+    transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, 
+    black 0%, 
+    black 60%, 
+    rgba(0,0,0,0.5) 85%, 
+    transparent 100%);
+}
+
+/* La Card con Glassmorphism Real */
+.ContentCard {
+  width: 90%;
+  max-width: 420px;
+  margin: -80px auto 40px; /* Sube la tarjeta para solapar la imagen */
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(15px) saturate(180%);
+  -webkit-backdrop-filter: blur(15px) saturate(180%);
+  border-radius: 40px;
+  padding: 40px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+  z-index: 10;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Espaciado uniforme automático */
+}
+
+/* Animación de entrada para que no aparezca de golpe */
+.ContentCard {
+  animation: slideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 9px 12px;
+  gap: 8px;
+  height: 44px;           
+  width: 85%;               
+  max-width: 250px;         
+  border: none;
+  background: #61715d;      
+  border-radius: 20px;
+  cursor: pointer;
+  text-decoration: none;    
+  align-self: center;       
+  transition: background 0.3s ease;
+  margin-top: 10px;
+}
+
+.lable {
+  line-height: 22px;
+  font-size: 15px;          
+  color: #fff;
+  font-family: 'Montserrat', sans-serif; 
+  letter-spacing: 1px;
+}
+
+.button:hover {
+  background: #7a6565;     
+}
+
+
+.button:hover .svg-icon {
+  animation: slope 1s linear infinite;
+}
+
+@keyframes slope {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(10deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Asegura que el SVG herede el color blanco si es necesario */
+.svg-icon g {
+  stroke: #fff;
+}
+
+.DIVImagen2 {
+  display: flex;
+  flex-wrap: wrap;       /* Permite que el texto baje si no hay espacio */
+  justify-content: center;
+  align-items: center;
+  gap: 20px;             /* Espacio entre las dos imágenes */
+  margin: 20px 0;
+  width: 100%;
+}
+
+.DIVImagen2 .CodigoQr {
+   
+  width: 100px;          /* Ajusta el ancho a tu gusto */
+  height: 100px;         /* Debe ser igual al ancho para ser cuadradas */
+  object-fit: contain;   /* Mantiene la proporción sin deformar */
+  
+  
+  border: 2px solid white; 
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.3); /* Fondo sutil por si son transparentes */
+  padding: 10px;
+}
+
+.DIVImagen2 p {
+  width: 100%;           /* Obliga al texto a ocupar todo el ancho y bajar */
+  text-align: center;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #8d5d6a;
+}
+
+.botonNombres{
+  background-color: #cfb074;
+}
+
+/* Contenedor general de la familia */
+.SeccionFamilia {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Distribución en dos columnas para los padres */
+.ContenedorPadres {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  text-align: center;
+}
+
+.BloquePadres {
+  flex: 1;
+}
+
+/* Títulos de sección (Papás de..., Padrinos...) */
+/* Títulos de sección (Papás de..., Padrinos...) */
+.TituloRol {
+  font-family: 'Cormorant Garamond', serif; /* NUEVA FUENTE */
+  font-size: 0.75rem !important; /* Un poco más grande para compensar la nueva fuente */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #8d5d6a !important; 
+  font-weight: 600;
+  margin-bottom: 8px !important;
+}
+
+/* Nombres de los familiares (Papás) */
+.NombreFamiliar {
+  font-family: 'Cormorant Garamond', serif; /* NUEVA FUENTE */
+  font-size: 1rem !important; /* Ajustado para mejor lectura */
+  color: #2d453e !important; 
+  line-height: 1.4;
+  margin-bottom: 2px !important;
+}
+
+/* Estilo especial para los padrinos */
+.NombrePadrino {
+  font-family: 'Great Vibes', cursive; /* NUEVA FUENTE CURSIVA */
+  font-size: 2.2rem !important; /* Las fuentes cursivas suelen necesitar más tamaño */
+  color: #2d453e !important;
+  margin: 0 !important;
+  line-height: 1.2;
+}
+
+/* itinerario */
+.SeccionItinerario {
+  margin: 30px 0;
+  width: 100%;
+}
+
+.Timeline {
+  position: relative;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+/* La línea vertical del diagrama */
+.Timeline::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  bottom: 10px;
+  left: 70px; /* Posición de la línea */
+  width: 2px;
+  background-color: rgba(141, 93, 106, 0.4); /* Color rosa viejo translúcido */
+}
+
+.TimelineItem {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.TimelineItem:last-child {
+  margin-bottom: 0;
+}
+
+/* Estilo de la hora */
+.Time {
+  width: 60px; /* Ancho fijo para que la línea quede recta */
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  color: #8d5d6a;
+  font-weight: 600;
+  text-align: right;
+  padding-right: 15px;
+  padding-top: 1px;
+}
+
+/* El círculo en la línea de tiempo */
+.Dot {
+  position: absolute;
+  left: 70px;
+  transform: translateX(-50%);
+  top: 5px;
+  width: 14px;
+  height: 14px;
+  background-color: #8da388; /* Verde de tus botones */
+  border: 3px solid #fff;
+  border-radius: 50%;
+  z-index: 2;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Ligera sombra para dar volumen */
+}
+
+/* Contenedor del texto del evento */
+.ContentTimeline {
+  flex: 1;
+  padding-left: 25px;
+  text-align: left;
+}
+
+.EventTitle {
+  font-family: 'Cormorant Garamond', serif; /* Manteniendo la fuente elegante */
+  font-size: 1.2rem !important;
+  color: #2d453e !important;
+  font-weight: 600;
+  margin: 0 0 4px 0 !important;
+  line-height: 1;
+}
+
+.EventDesc {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem !important;
+  color: #666 !important;
+  margin: 0 !important;
+}
+
+.ContenedorDireccion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.SubMenuMapas {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  animation: fadeIn 0.3s ease;
+}
+
+.SubBoton {
+  background: #fdf2f7; /* Color suave de fondo */
+  color: #2d453e; /* Tu color verde oscuro */
+  padding: 8px 15px;
+  border-radius: 15px;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  border: 1px solid rgba(141, 93, 106, 0.2);
+}
