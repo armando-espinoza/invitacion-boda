@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react' // Importación limpia
+import { useState, useRef } from 'react' 
 import ejemploQR from '/ejemploQR.jpg'
 import './App.css'
 
@@ -20,18 +20,18 @@ function App() {
   return (
     <>
       <div className='Parent'>
-        {/* Elemento de audio oculto - Asegúrate de que el archivo esté en public/cancion.mp3 */}
+        
         <audio ref={audioRef} src="/AlmaEnamorada.mp3" loop />
         
         <div className="blur-blob"></div>
         <div className="blur-blob-2"></div>
 
-        {/* Imagen superior */}
+        
         <div className='DIVImagen'>
           <img className='Anillos' src="fondoooo.jpeg" alt="Anillos" />
         </div>
 
-        {/* Card principal */}
+        
         <div className='ContentCard'>
           <div className='Seccion'>
             <p>Te esperamos para celebrar nuestro amor</p>
@@ -41,7 +41,7 @@ function App() {
             <h2 className='Nombres'>Ramón y Liliana</h2>
           </div>
 
-          {/* Botón de Música Actualizado */}
+          
           <button 
             className={`botonNombres ${isPlaying ? 'reproduciendo' : ''}`} 
             onClick={toggleMusic}
@@ -49,7 +49,7 @@ function App() {
             {isPlaying ? 'Pausar canción' : 'Escucha nuestra canción'}
           </button>
 
-          {/* Cuenta regresiva */}
+          
           <div id="countdown" className="contador">
             <div><span id="days">00</span><small>Días</small></div>
             <div><span id="hours">00</span><small>Horas</small></div>
@@ -57,8 +57,8 @@ function App() {
             <div><span id="seconds">00</span><small>Seg</small></div>
           </div>
 
-          {/* Botón de Confirmación */}
-          <a href="TU_LINK_DE_WHATSAPP_O_FORMULARIO" target="_blank" className="button">
+          
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdEm4944jIyXny2czKgdQrZHHT54ydrQvvgQPEXZRj36rsn5g/viewform" target="_blank" className="button">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" className="svg-icon">
               <g strokeWidth="2" strokeLinecap="round" stroke="#fff">
                 <rect y="5" x="4" width="16" rx="2" height="16"></rect>
@@ -70,7 +70,7 @@ function App() {
             <span className="lable">Confirma Asistencia</span>
           </a>
 
-          {/* Sección de Padres y Padrinos */}
+          
           <div className='SeccionFamilia'>
             <div className='ContenedorPadres'>
               <div className='BloquePadres'>
@@ -110,7 +110,7 @@ function App() {
             <p>Te esperamos con vestimenta formal</p>
           </div>
 
-          {/* Sección Itinerario */}
+          
           <div className='SeccionItinerario'>
             <p className='TituloRol' style={{ fontSize: '1rem', marginBottom: '20px' }}>Nuestro Itinerario</p>
             <div className='Timeline'>
@@ -134,7 +134,7 @@ function App() {
             </div>
           </div>
 
-          {/* Botón de Dirección con Submenú */}
+          
           <div className='ContenedorDireccion'>
             <button className='button' onClick={() => setShowMaps(!showMaps)}>
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" className="svg-icon">
