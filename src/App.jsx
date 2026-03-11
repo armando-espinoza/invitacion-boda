@@ -148,7 +148,7 @@ function App() {
 
             {showMaps && (
               <div className='SubMenuMapas'>
-                <a href="https://share.google/RSjL4TXcJfDNmwY7H" target="_blank" className='SubBoton'>Misa</a>
+                <a href="https://maps.app.goo.gl/1ceZTfJoWgFymBXp9?g_st=iw" target="_blank" className='SubBoton'>Misa</a>
                 <a href="https://maps.app.goo.gl/6hL9J18fZykK76Xz9?g_st=iw" target="_blank" className='SubBoton'>Jardín</a>
               </div>
             )}
