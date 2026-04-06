@@ -47,7 +47,6 @@ function App() {
   return (
     <>
       <div className='Parent'>
-
         <audio ref={audioRef} src="/Hastamifinal.mp3" loop />
 
         <div className="blur-blob"></div>
@@ -65,13 +64,6 @@ function App() {
           <div className='BloquePadrinos'>
             <p className='NombrePadrino'>Ramón y Liliana</p>
           </div>
-
-          <button
-            className={`botonNombres ${isPlaying ? 'reproduciendo' : ''}`}
-            onClick={toggleMusic}
-          >
-            {isPlaying ? 'Pausar canción' : 'Escucha nuestra canción'}
-          </button>
 
           <div id="countdown" className="contador">
             <div><span id="days">00</span><small>Días</small></div>
@@ -93,19 +85,20 @@ function App() {
                 <p className='NombreFamiliar'>Casildo Espinoza Gómez</p>
               </div>
             </div>
-            <div className='DivisorSutil'></div>
-            <div className='BloquePadrinos'>
-              <p className='TituloRol'>Padrinos de Velación</p>
-              <p className='NombrePadrino'>Rubí Esmeralda Ramos Medina</p>
-              <p className='NombrePadrino'> y </p>
-              <p className='NombrePadrino'>Oscar Omar García Navarrete</p>
-            </div>
-            <div className='DivisorSutil'></div>
-            <div className='BloquePadrinos'>
-              <p className='TituloRol'>Padrinos del novio</p>
-              <p className='NombrePadrino'>Esmeralda Yamilet Zepulveda Quevedo</p>
-              <p className='NombrePadrino'> y </p>
-              <p className='NombrePadrino'>Javier Borboa Montes</p>
+          </div>
+
+          <div className='SeccionFamilia'>
+            <div className='ContenedorPadres'>
+              <div className='BloquePadres'>
+                <p className='TituloRol'>Padrinos de Velación</p>
+                <p className='NombreFamiliar'>Rubí Esmeralda Ramos Medina</p>
+                <p className='NombreFamiliar'>Oscar Omar García Navarrete</p>
+              </div>
+              <div className='BloquePadres'>
+                <p className='TituloRol'>Padrinos del Novio</p>
+                <p className='NombreFamiliar'>Esmeralda Yamilet Zepulveda Quevedo</p>
+                <p className='NombreFamiliar'>Javier Borboa Montes</p>
+              </div>
             </div>
           </div>
 
@@ -169,7 +162,7 @@ function App() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
 export default App
