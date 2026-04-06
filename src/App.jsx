@@ -147,14 +147,12 @@ if (!started) {
             </button>
             {showMaps && (
               <div className='SubMenuMapas'>
-<<<<<<< HEAD
                 <a href="https://maps.app.goo.gl/1ceZTfJoWgFymBXp9?g_st=iw" target="_blank" className='SubBoton'>Misa</a>
                 <a href="https://maps.app.goo.gl/6hL9J18fZykK76Xz9?g_st=iw" target="_blank" className='SubBoton'>Jardín</a>
               </div>
-=======
            <a href="https://maps.app.goo.gl/1ceZTfJoWgFymBXp9?g_st=iw" target="_blank" className='SubBoton'>Misa</a>
                 <a href="https://maps.app.goo.gl/6hL9J18fZykK76Xz9?g_st=iw" target="_blank" className='SubBoton'>Jardín</a>    </div>
->>>>>>> 92ebaac (Sobre de inicio y canción final)
+ 92ebaac (Sobre de inicio y canción final)
             )}
           </div>
  
