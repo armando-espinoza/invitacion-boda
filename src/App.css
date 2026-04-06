@@ -9,25 +9,35 @@
   position: relative;
   overflow-x: hidden;
   padding-bottom: 50px;
-  background-color: #87a982; 
+  background-color: #87a982;
   background-repeat: no-repeat;
   background-size: 180px auto;
-  background-attachment: fixed; 
+  background-attachment: fixed;
+}
+
+.Parent::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.4;
+  background-image: radial-gradient(#b07d88 0.5px, transparent 0.5px);
+  background-size: 20px 20px;
+  pointer-events: none;
 }
 
 .Parent::after {
   content: "";
-  position: fixed; 
+  position: fixed;
   bottom: 0;
   right: 0;
-  width: 220px; 
+  width: 220px;
   height: 220px;
   background-image: url('flor.png');
   background-position: bottom right;
   background-repeat: no-repeat;
   background-size: contain;
-  z-index: 999; 
-  pointer-events: none; 
+  z-index: 999;
+  pointer-events: none;
   opacity: 0.95;
 }
 
@@ -42,40 +52,50 @@
   background: linear-gradient(to bottom, #eacbd5, #ffffff);
 }
 
-
 .Anillos {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  
-
-  image-rendering: -webkit-optimize-contrast; 
-  transform: translateZ(0); 
-
-  
+  image-rendering: -webkit-optimize-contrast;
+  transform: translateZ(0);
+  filter: brightness(0.95) contrast(1.05);
   mask-image: linear-gradient(
-    to bottom, 
-    black 0%, 
-    black 60%, 
-    rgba(0,0,0,0.6) 80%, 
-    rgba(0,0,0,0.2) 92%, 
+    to bottom,
+    black 0%,
+    black 60%,
+    rgba(0,0,0,0.6) 80%,
+    rgba(0,0,0,0.2) 92%,
     transparent 100%
   );
   -webkit-mask-image: linear-gradient(
-    to bottom, 
-    black 0%, 
-    black 60%, 
-    rgba(0,0,0,0.6) 80%, 
-    rgba(0,0,0,0.2) 92%, 
+    to bottom,
+    black 0%,
+    black 60%,
+    rgba(0,0,0,0.6) 80%,
+    rgba(0,0,0,0.2) 92%,
     transparent 100%
   );
 }
 
+.blur-blob,
+.blur-blob-2 {
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(255, 182, 193, 0.3) 0%, transparent 70%);
+  filter: blur(60px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.blur-blob { top: -100px; left: -100px; }
+.blur-blob-2 { bottom: 10%; right: -150px; animation-delay: -2s; }
+
 .ContentCard {
   width: 90%;
   max-width: 420px;
-  margin: -80px auto 40px; 
-  background: rgba(255, 255, 255, 0.8);
+  margin: -80px auto 40px;
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(15px) saturate(180%);
   -webkit-backdrop-filter: blur(15px) saturate(180%);
   border-radius: 40px;
@@ -88,42 +108,37 @@
   flex-direction: column;
   gap: 25px;
   text-align: center;
-  
-  
-  overflow: visible; 
-  
-  
-  background-image: none; 
+  overflow: visible;
+  animation: slideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 .ContentCard::before {
   content: "";
   position: absolute;
-  top: -40px;    
-  left: -40px;   
-  width: 180px;  
+  top: -40px;
+  left: -40px;
+  width: 180px;
   height: 180px;
   background-image: url('flores.png');
   background-size: contain;
   background-repeat: no-repeat;
-  z-index: -1;   
+  z-index: -1;
   pointer-events: none;
 }
-
 
 .ContentCard::after {
   content: "";
   position: absolute;
-  bottom: -40px; 
-  right: -40px;  
+  bottom: -40px;
+  right: -40px;
   width: 200px;
   height: 200px;
   background-image: url('rflores.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: bottom right;
-  z-index: -1;   
+  z-index: -1;
   pointer-events: none;
-  
   filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
 }
 
@@ -132,26 +147,38 @@
   z-index: 2;
 }
 
-
-.Nombres {
-  font-family: 'Ms Madi', cursive;
-  font-size: clamp(2.5rem, 10vw, 3.5rem);
-  color: #2d453e; 
-  margin: 15px 0;
-  line-height: 1;
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
 
 p {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.85rem;
   letter-spacing: 1px;
   color: #555;
-  text-transform: none;
   font-weight: 400;
   margin-bottom: 20px;
 }
 
+.Nombres {
+  font-family: 'Ms Madi', cursive;
+  font-size: clamp(2.5rem, 10vw, 3.5rem);
+  color: #2d453e;
+  margin: 15px 0;
+  line-height: 1;
+}
+
+.NombrePadrino {
+  font-family: 'Great Vibes', cursive !important;
+  font-size: clamp(2rem, 10vw, 3rem) !important;
+  color: #2d453e !important;
+  margin: 10px auto !important;
+  line-height: 1.4 !important;
+  display: block;
+  text-align: center;
+  width: 90%;
+}
 
 #countdown {
   display: grid;
@@ -163,8 +190,12 @@ p {
 #countdown span {
   font-family: 'Montserrat', sans-serif;
   font-size: 1.5rem;
-  color: #b07d88;
+  font-weight: 300;
+  color: #8d5d6a;
   display: block;
+  border-bottom: 1px solid rgba(141, 93, 106, 0.2);
+  margin-bottom: 5px;
+  padding-bottom: 5px;
 }
 
 #countdown small {
@@ -173,134 +204,12 @@ p {
   color: #999;
 }
 
-
-.BotonEnlace {
-  display: inline-block; 
-  width: 80%;
-  padding: 12px;
-  font-size: 0.9rem; 
-  margin-top: 15px;
-  background-color: #8da388;
-  color: white;       
-  text-decoration: none;
-  text-align: center;   
-  border-radius: 5px;   
-  box-sizing: border-box; 
+.button,
+.TarjetaPase {
+  width: 85%;
+  max-width: 250px;
+  box-sizing: border-box;
 }
-
-.BotonEnlace:hover {
-  background-color: #7a6565; 
-}
-.CodigoQr {
-  width: 120px;
-  margin-top: 20px;
-  border: 5px solid white;
-  border-radius: 10px;
-}
-
-.blur-blob, .blur-blob-2 {
-  position: absolute;
-  width: 450px; 
-  height: 450px;
-  background: radial-gradient(circle, rgba(255, 182, 193, 0.3) 0%, transparent 70%);
-  filter: blur(60px);
-  z-index: 0;
-  pointer-events: none;
-}
-
-.blur-blob { top: -100px; left: -100px; }
-.blur-blob-2 { bottom: 10%; right: -150px; animation-delay: -2s; }
-
-.ContentCard {
-  width: 88%;
-  max-width: 420px;
-  background: rgba(255, 255, 255, 0.85); 
-  backdrop-filter: blur(12px);
-  border-radius: 40px 40px 0 0; 
-  padding: 40px 25px;
-  margin-top: -50px; 
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 0 -15px 35px rgba(0, 0, 0, 0.03); 
-  z-index: 5;
-}
-
-.Parent::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: 0.4;
-  background-image: radial-gradient(#b07d88 0.5px, transparent 0.5px);
-  background-size: 20px 20px;
-  pointer-events: none;
-}
-#countdown span {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 300; 
-  color: #8d5d6a;
-  border-bottom: 1px solid rgba(141, 93, 106, 0.2);
-  margin-bottom: 5px;
-  padding-bottom: 5px;
-}
-
-
-.HeroContainer {
-  width: 100%;
-  height: 50vh; 
-  position: relative;
-  overflow: hidden;
-  background-color: #ffffff;
-}
-
-.Anillos {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  
-  image-rendering: -webkit-optimize-contrast; 
-  filter: brightness(0.95) contrast(1.05); 
-  
-  
-  mask-image: linear-gradient(to bottom, 
-    black 0%, 
-    black 60%, 
-    rgba(0,0,0,0.5) 85%, 
-    transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, 
-    black 0%, 
-    black 60%, 
-    rgba(0,0,0,0.5) 85%, 
-    transparent 100%);
-}
-
-
-.ContentCard {
-  width: 90%;
-  max-width: 420px;
-  margin: -80px auto 40px; 
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(15px) saturate(180%);
-  -webkit-backdrop-filter: blur(15px) saturate(180%);
-  border-radius: 40px;
-  padding: 40px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
-  z-index: 10;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 25px; 
-}
-
-
-.ContentCard {
-  animation: slideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 
 .button {
   display: flex;
@@ -308,31 +217,20 @@ p {
   align-items: center;
   padding: 9px 12px;
   gap: 8px;
-  height: 44px;           
-  width: 85%;               
-  max-width: 250px;         
+  height: 44px;
   border: none;
-  background: #61715d;      
+  background: #61715d;
   border-radius: 20px;
   cursor: pointer;
-  text-decoration: none;    
-  align-self: center;       
+  text-decoration: none;
+  align-self: center;
   transition: background 0.3s ease;
   margin-top: 10px;
 }
 
-.lable {
-  line-height: 22px;
-  font-size: 15px;          
-  color: #fff;
-  font-family: 'Montserrat', sans-serif; 
-  letter-spacing: 1px;
-}
-
 .button:hover {
-  background: #7a6565;     
+  background: #7a6565;
 }
-
 
 .button:hover .svg-icon {
   animation: slope 1s linear infinite;
@@ -344,46 +242,57 @@ p {
   100% { transform: rotate(0deg); }
 }
 
-
 .svg-icon g {
   stroke: #fff;
 }
 
-.DIVImagen2 {
+.lable {
+  line-height: 22px;
+  font-size: 15px;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 1px;
+}
+
+.SeccionPase {
   display: flex;
-  flex-wrap: wrap;      
   justify-content: center;
-  align-items: center;
-  gap: 20px;           
-  margin: 20px 0;
   width: 100%;
 }
 
-.DIVImagen2 .CodigoQr {
-   
-  width: 100px;         
-  height: 100px;        
-  object-fit: contain;  
-  
-  
-  border: 2px solid white; 
-  border-radius: 15px;
-  background: rgba(255, 255, 255, 0.3); 
-  padding: 10px;
-}
-
-.DIVImagen2 p {
-  width: 100%;           
+.TarjetaPase {
+  border: 1.5px solid #a8c5a0;
+  border-radius: 20px;
+  padding: 12px 0;
   text-align: center;
-  margin-top: 10px;
-  font-size: 0.9rem;
-  color: #8d5d6a;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(6px);
+  align-self: center;
 }
 
-.botonNombres{
-  background-color: #cfb074;
+.NumeroPase {
+  font-weight: 700;
+  color: #6b4f3a;
+  font-size: 1.1rem;
 }
 
+.TituloRol {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.75rem !important;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #8d5d6a !important;
+  font-weight: 600;
+  margin-bottom: 8px !important;
+}
+
+.NombreFamiliar {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem !important;
+  color: #2d453e !important;
+  line-height: 1.4;
+  margin-bottom: 2px !important;
+}
 
 .SeccionFamilia {
   margin: 20px 0;
@@ -391,7 +300,6 @@ p {
   flex-direction: column;
   gap: 20px;
 }
-
 
 .ContenedorPadres {
   display: flex;
@@ -404,39 +312,35 @@ p {
   flex: 1;
 }
 
-
-.TituloRol {
-  font-family: 'Cormorant Garamond', serif; 
-  font-size: 0.75rem !important; 
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: #8d5d6a !important; 
-  font-weight: 600;
-  margin-bottom: 8px !important;
+.DIVImagen2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin: 20px 0;
+  width: 100%;
 }
 
-
-.NombreFamiliar {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1rem !important; 
-  color: #2d453e !important; 
-  line-height: 1.4;
-  margin-bottom: 2px !important;
+.DIVImagen2 .CodigoQr {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border: 2px solid white;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 10px;
 }
 
-.NombrePadrino {
-  font-family: 'Great Vibes', cursive !important;
- font-size: clamp(2rem, 10vw, 3rem) !important; 
-  color: #2d453e !important;
-  
-  margin: 10px auto !important;
-  
-  line-height: 1.4 !important; 
-  
-  display: block;
+.DIVImagen2 p {
+  width: 100%;
   text-align: center;
-  width: 90%;
-}.SeccionItinerario {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #8d5d6a;
+}
+
+.SeccionItinerario {
   margin: 30px 0;
   width: 100%;
 }
@@ -447,15 +351,14 @@ p {
   margin: 0 auto;
 }
 
-
 .Timeline::before {
   content: '';
   position: absolute;
   top: 8px;
   bottom: 10px;
-  left: 70px; 
+  left: 70px;
   width: 2px;
-  background-color: rgba(141, 93, 106, 0.4); 
+  background-color: rgba(141, 93, 106, 0.4);
 }
 
 .TimelineItem {
@@ -469,9 +372,8 @@ p {
   margin-bottom: 0;
 }
 
-
 .Time {
-  width: 60px; 
+  width: 60px;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.9rem;
   color: #8d5d6a;
@@ -481,7 +383,6 @@ p {
   padding-top: 1px;
 }
 
-
 .Dot {
   position: absolute;
   left: 70px;
@@ -489,13 +390,12 @@ p {
   top: 5px;
   width: 14px;
   height: 14px;
-  background-color: #8da388; 
+  background-color: #8da388;
   border: 3px solid #fff;
   border-radius: 50%;
   z-index: 2;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-
 
 .ContentTimeline {
   flex: 1;
@@ -504,7 +404,7 @@ p {
 }
 
 .EventTitle {
-  font-family: 'Cormorant Garamond', serif; 
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1.2rem !important;
   color: #2d453e !important;
   font-weight: 600;
@@ -534,8 +434,8 @@ p {
 }
 
 .SubBoton {
-  background: #fdf2f7; 
-  color: #2d453e; 
+  background: #fdf2f7;
+  color: #2d453e;
   padding: 8px 15px;
   border-radius: 15px;
   text-decoration: none;
@@ -543,7 +443,6 @@ p {
   font-size: 0.8rem;
   border: 1px solid rgba(141, 93, 106, 0.2);
 }
-
 
 .WelcomeScreen {
   position: fixed;
@@ -579,7 +478,6 @@ p {
   margin: 0;
 }
 
-/* ---- SOBRE ---- */
 .envelope-wrapper {
   cursor: pointer;
   display: flex;

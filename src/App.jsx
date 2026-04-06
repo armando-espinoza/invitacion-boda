@@ -1,11 +1,20 @@
 import { useState, useRef } from 'react'
 import './App.css'
 
+const pases = {
+  "2Mer5T": 2,
+  "3Bod8X": 3,
+  "4Fst2K": 4,
+};
+
 function App() {
   const [showMaps, setShowMaps] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [started, setStarted] = useState(false);
   const audioRef = useRef(null);
+
+  const claveUrl = window.location.hash.replace('#', '') || null;
+  const invitados = claveUrl ? (pases[claveUrl] ?? null) : 0;
 
   const toggleMusic = () => {
     if (isPlaying) {
@@ -159,6 +168,19 @@ function App() {
             </svg>
             <span className="lable">Confirma Asistencia</span>
           </a>
+{invitados !== null && (
+  <div className='SeccionPase'>
+    <div className='TarjetaPase'>
+      <p className='TituloRol'>🎟 Pase de Invitado</p>
+      <p className='NombreFamiliar'>
+        {invitados === 0
+          ? 'Pase personal'
+          : <>Este pase es válido para <span className='NumeroPase'>{invitados} {invitados === 1 ? 'persona' : 'personas'}</span></>
+        }
+      </p>
+    </div>
+  </div>
+)}
         </div>
       </div>
     </>
