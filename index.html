@@ -12,27 +12,22 @@
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
     <script>
-    // Configura la fecha de la boda aquí (Año, Mes [0-11], Día, Hora, Minutos)
-    // Nota: Enero es 0, Diciembre es 11.
     const fechaBoda = new Date(2026, 11, 5, 18, 0, 0).getTime();
 
     const timer = setInterval(function() {
         const ahora = new Date().getTime();
         const distancia = fechaBoda - ahora;
 
-        // Cálculos de tiempo
         const d = Math.floor(distancia / (1000 * 60 * 60 * 24));
         const h = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const m = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
         const s = Math.floor((distancia % (1000 * 60)) / 1000);
 
-        // Inyectar en el HTML
         document.getElementById("days").innerText = d;
         document.getElementById("hours").innerText = h;
         document.getElementById("minutes").innerText = m;
         document.getElementById("seconds").innerText = s;
 
-        // Si la fecha ya pasó
         if (distancia < 0) {
             clearInterval(timer);
             document.getElementById("countdown").innerHTML = "¡HOY ES EL GRAN DÍA!";
