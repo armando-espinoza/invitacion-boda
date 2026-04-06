@@ -2,9 +2,9 @@ import { useState, useRef } from 'react'
 import './App.css'
 
 const pases = {
-  "2Mer5T": 2,
-  "3Bod8X": 3,
-  "4Fst2K": 4,
+  "Mer5T": 2,
+  "Bod8X": 3,
+  "Fst2K": 4,
 };
 
 function App() {
