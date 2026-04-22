@@ -62,7 +62,7 @@ function App() {
         <div className="blur-blob-2"></div>
 
         <div className='DIVImagen'>
-          <img className='Anillos' src="fondoooo.jpeg" alt="Anillos" />
+          <img className='Anillos' src="fondo.jpeg" alt="Anillos" />
         </div>
 
         <div className='ContentCard'>
