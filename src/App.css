@@ -1,4 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;600;700&family=Dancing+Script:wght@400;700&family=Ms+Madi&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 .Parent {
   min-height: 100vh;
@@ -6,23 +12,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #fbfaf8;
   position: relative;
   overflow-x: hidden;
-  padding-bottom: 50px;
-  background-color: #87a982;
-  background-repeat: no-repeat;
-  background-size: 180px auto;
-  background-attachment: fixed;
+  padding-bottom: 60px;
 }
 
 .Parent::before {
   content: "";
   position: absolute;
   inset: 0;
-  opacity: 0.4;
+  opacity: 0.3;
   background-image: radial-gradient(#b07d88 0.5px, transparent 0.5px);
   background-size: 20px 20px;
   pointer-events: none;
+  z-index: 1;
 }
 
 .Parent::after {
@@ -30,228 +34,372 @@
   position: fixed;
   bottom: 0;
   right: 0;
-  width: 220px;
-  height: 220px;
+  width: 180px;
+  height: 180px;
   background-image: url('flor.png');
   background-position: bottom right;
-  background-repeat: no-repeat;
+  background-repeat: no-no-repeat;
   background-size: contain;
   z-index: 999;
   pointer-events: none;
-  opacity: 0.95;
+  opacity: 0.8;
 }
 
-.DIVImagen {
-  width: 100%;
-  height: 45vh;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  background: linear-gradient(to bottom, #eacbd5, #ffffff);
-}
-
-.Anillos {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  image-rendering: -webkit-optimize-contrast;
-  transform: translateZ(0);
-  filter: brightness(0.95) contrast(1.05);
-  mask-image: linear-gradient(
-    to bottom,
-    black 0%,
-    black 60%,
-    rgba(0,0,0,0.6) 80%,
-    rgba(0,0,0,0.2) 92%,
-    transparent 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    black 0%,
-    black 60%,
-    rgba(0,0,0,0.6) 80%,
-    rgba(0,0,0,0.2) 92%,
-    transparent 100%
-  );
-}
-
-.blur-blob,
-.blur-blob-2 {
+.blur-blob, .blur-blob-2 {
   position: absolute;
-  width: 450px;
-  height: 450px;
-  background: radial-gradient(circle, rgba(255, 182, 193, 0.3) 0%, transparent 70%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(234, 203, 213, 0.4) 0%, transparent 70%);
   filter: blur(60px);
   z-index: 0;
   pointer-events: none;
 }
 
 .blur-blob { top: -100px; left: -100px; }
-.blur-blob-2 { bottom: 10%; right: -150px; animation-delay: -2s; }
+.blur-blob-2 { bottom: 20%; right: -150px; }
+
+.FraseSuperior {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  color: #5e4d3b;
+  text-transform: uppercase;
+  margin: 40px 0 20px;
+  max-width: 80%;
+  line-height: 1.8;
+  text-align: center;
+  z-index: 2;
+}
+
+.Nombre {
+  font-family: 'Great Vibes', cursive !important;
+  font-size: clamp(2.5rem, 12vw, 4rem) !important;
+  color: #c4a876 !important;
+  margin: 10px auto !important;
+  line-height: 1.2 !important;
+  display: block;
+  text-align: center;
+  width: 90%;
+  z-index: 2;
+}
+
+.DIVImagen2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  z-index: 2;
+}
+
+.Anillos {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  border-radius: 150px 150px 20px 20px; 
+  object-fit: cover;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  border: 8px solid white;
+}
 
 .ContentCard {
   width: 90%;
-  max-width: 420px;
-  margin: -80px auto 40px;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(15px) saturate(180%);
-  -webkit-backdrop-filter: blur(15px) saturate(180%);
+  max-width: 450px;
+  margin: 20px auto;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: 40px;
   padding: 40px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
   z-index: 10;
-  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  text-align: center;
-  overflow: visible;
+  gap: 30px;
   animation: slideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.ContentCard::before {
-  content: "";
-  position: absolute;
-  top: -40px;
-  left: -40px;
-  width: 180px;
-  height: 180px;
-  background-image: url('flores.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  z-index: -1;
-  pointer-events: none;
-}
-
-.ContentCard::after {
-  content: "";
-  position: absolute;
-  bottom: -40px;
-  right: -40px;
-  width: 200px;
-  height: 200px;
-  background-image: url('rflores.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: bottom right;
-  z-index: -1;
-  pointer-events: none;
-  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
-}
-
-.ContentCard > * {
-  position: relative;
-  z-index: 2;
 }
 
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(40px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
-p {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.85rem;
-  letter-spacing: 1px;
-  color: #555;
-  font-weight: 400;
-  margin-bottom: 20px;
+.SubtituloSeccion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+  margin: 20px 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #8d5d6a;
+  text-transform: uppercase;
+  letter-spacing: 3px;
 }
 
-.Nombres {
-  font-family: 'Ms Madi', cursive;
-  font-size: clamp(2.5rem, 10vw, 3.5rem);
-  color: #2d453e;
-  margin: 15px 0;
-  line-height: 1;
+.SubtituloSeccion::before,
+.SubtituloSeccion::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(196, 168, 118, 0.4); 
+  max-width: 50px;
 }
 
-.NombrePadrino {
-  font-family: 'Great Vibes', cursive !important;
-  font-size: clamp(2rem, 10vw, 3rem) !important;
-  color: #2d453e !important;
-  margin: 10px auto !important;
-  line-height: 1.4 !important;
-  display: block;
+.TextoSubtitulo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: #5e4d3b;
+  line-height: 1.5;
   text-align: center;
-  width: 90%;
+  margin: 0 auto;
+  max-width: 90%;
 }
+
+.TextoInicio {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1rem, 5vw, 1.5rem); 
+  letter-spacing: 2px;
+  color: #5e4d3b;
+  text-transform: uppercase;
+  font-weight: 500;  
+  margin: 20px auto 100px auto; 
+  text-align: center;
+  
+  width: 90%;
+  max-width: 800px; 
+  
+  line-height: 1.6;
+  z-index: 2;
+  position: relative;
+}
+
 
 #countdown {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
-  margin: 25px 0;
+  margin: 15px 0;
+  text-align: center;
 }
 
 #countdown span {
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 300;
   color: #8d5d6a;
   display: block;
   border-bottom: 1px solid rgba(141, 93, 106, 0.2);
-  margin-bottom: 5px;
   padding-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 #countdown small {
-  font-size: 0.6rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
-  color: #999;
+  color: #c4a876;
+  letter-spacing: 1px;
+  display: block;
 }
 
-.button,
-.TarjetaPase {
-  width: 85%;
-  max-width: 250px;
-  box-sizing: border-box;
+.SeccionFamilia {
+  width: 100%;
+}
+
+.ContenedorPadres {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  text-align: center;
+}
+
+.BloquePadres {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  text-align: center;
+}
+
+.TituloRol {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #c4a876;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.NombreFamiliar {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  color: #5e4d3b;
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+.Timeline {
+  position: relative;
+  max-width: 300px;
+  margin: 20px auto;
+}
+
+.Timeline::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  left: 60px;
+  width: 1px;
+  background-color: rgba(196, 168, 118, 0.4);
+}
+
+.TimelineItem {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.Time {
+  width: 50px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  color: #8d5d6a;
+  font-weight: 600;
+  text-align: right;
+  padding-right: 15px;
+}
+
+.Dot {
+  position: absolute;
+  left: 60px;
+  transform: translateX(-50%);
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  background-color: #c4a876;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.ContentTimeline {
+  flex: 1;
+  padding-left: 25px;
+}
+
+.EventTitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  color: #2d453e;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.EventDesc {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  color: #777;
 }
 
 .button {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 9px 12px;
-  gap: 8px;
-  height: 44px;
+  padding: 12px 25px;
+  gap: 10px;
+  background: #c4a876;
+  border-radius: 30px;
   border: none;
-  background: #61715d;
-  border-radius: 20px;
   cursor: pointer;
   text-decoration: none;
   align-self: center;
-  transition: background 0.3s ease;
-  margin-top: 10px;
+  transition: all 0.3s ease;
+  width: fit-content;
+  min-width: 220px;
 }
 
 .button:hover {
-  background: #7a6565;
-}
-
-.button:hover .svg-icon {
-  animation: slope 1s linear infinite;
-}
-
-@keyframes slope {
-  0% { transform: rotate(0deg); }
-  50% { transform: rotate(10deg); }
-  100% { transform: rotate(0deg); }
-}
-
-.svg-icon g {
-  stroke: #fff;
+  background: #b39665;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(196, 168, 118, 0.3);
 }
 
 .lable {
-  line-height: 22px;
-  font-size: 15px;
-  color: #fff;
+  color: white;
   font-family: 'Montserrat', sans-serif;
-  letter-spacing: 1px;
+  font-size: 0.85rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.ContenedorDireccion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 15px;
+}
+
+.SubMenuMapas {
+  display: flex;
+  gap: 10px;
+  animation: fadeIn 0.4s ease;
+}
+
+.SubBoton {
+  background: #fdf2f7;
+  color: #8d5d6a;
+  padding: 8px 18px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  border: 1px solid rgba(141, 93, 106, 0.1);
+  transition: 0.3s;
+}
+
+.SubBoton:hover {
+  background: #8d5d6a;
+  color: white;
+}
+
+.DIVImagen2 .CodigoQr {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  padding: 10px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.SeparadorFloral {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 20px auto;
+  width: 60%;
+}
+
+.SeparadorFloral::before, .SeparadorFloral::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid rgba(196, 168, 118, 0.3);
+}
+
+.Simbolo {
+  font-size: 10px;
+  transform: rotate(45deg);
+  background-color: #c4a876;
+  width: 6px;
+  height: 6px;
+  display: inline-block;
+  margin: 0 10px;
 }
 
 .SeccionPase {
@@ -260,189 +408,32 @@ p {
   width: 100%;
 }
 
-.TarjetaPase {
-  border: 1.5px solid #a8c5a0;
-  border-radius: 20px;
-  padding: 12px 0;
+
+.Seccion {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(6px);
-  align-self: center;
+  gap: 10px;
+}
+
+
+.TarjetaPase {
+  border: 1px dashed #c4a876;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  background: rgba(196, 168, 118, 0.05);
+  width: 90%;
 }
 
 .NumeroPase {
   font-weight: 700;
-  color: #6b4f3a;
-  font-size: 1.1rem;
-}
-
-.TituloRol {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 0.75rem !important;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: #8d5d6a !important;
-  font-weight: 600;
-  margin-bottom: 8px !important;
-}
-
-.NombreFamiliar {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1rem !important;
-  color: #2d453e !important;
-  line-height: 1.4;
-  margin-bottom: 2px !important;
-}
-
-.SeccionFamilia {
-  margin: 20px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.ContenedorPadres {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  text-align: center;
-}
-
-.BloquePadres {
-  flex: 1;
-}
-
-.DIVImagen2 {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  margin: 20px 0;
-  width: 100%;
-}
-
-.DIVImagen2 .CodigoQr {
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
-  border: 2px solid white;
-  border-radius: 15px;
-  background: rgba(255, 255, 255, 0.3);
-  padding: 10px;
-}
-
-.DIVImagen2 p {
-  width: 100%;
-  text-align: center;
-  margin-top: 10px;
-  font-size: 0.9rem;
   color: #8d5d6a;
+  font-size: 1.2rem;
 }
 
-.SeccionItinerario {
-  margin: 30px 0;
-  width: 100%;
-}
-
-.Timeline {
-  position: relative;
-  max-width: 320px;
-  margin: 0 auto;
-}
-
-.Timeline::before {
-  content: '';
-  position: absolute;
-  top: 8px;
-  bottom: 10px;
-  left: 70px;
-  width: 2px;
-  background-color: rgba(141, 93, 106, 0.4);
-}
-
-.TimelineItem {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 25px;
-  position: relative;
-}
-
-.TimelineItem:last-child {
-  margin-bottom: 0;
-}
-
-.Time {
-  width: 60px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.9rem;
-  color: #8d5d6a;
-  font-weight: 600;
-  text-align: right;
-  padding-right: 15px;
-  padding-top: 1px;
-}
-
-.Dot {
-  position: absolute;
-  left: 70px;
-  transform: translateX(-50%);
-  top: 5px;
-  width: 14px;
-  height: 14px;
-  background-color: #8da388;
-  border: 3px solid #fff;
-  border-radius: 50%;
-  z-index: 2;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.ContentTimeline {
-  flex: 1;
-  padding-left: 25px;
-  text-align: left;
-}
-
-.EventTitle {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.2rem !important;
-  color: #2d453e !important;
-  font-weight: 600;
-  margin: 0 0 4px 0 !important;
-  line-height: 1;
-}
-
-.EventDesc {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.75rem !important;
-  color: #666 !important;
-  margin: 0 !important;
-}
-
-.ContenedorDireccion {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-.SubMenuMapas {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-  animation: fadeIn 0.3s ease;
-}
-
-.SubBoton {
-  background: #fdf2f7;
-  color: #2d453e;
-  padding: 8px 15px;
-  border-radius: 15px;
-  text-decoration: none;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.8rem;
-  border: 1px solid rgba(141, 93, 106, 0.2);
-}
 
 .WelcomeScreen {
   position: fixed;
@@ -461,21 +452,6 @@ p {
   flex-direction: column;
   align-items: center;
   gap: 16px;
-}
-
-.WelcomeContent .nombres {
-  font-family: 'Dancing Script', cursive;
-  font-size: 2.8rem;
-  color: #4a6741;
-  margin: 0;
-}
-
-.WelcomeContent .subtitulo {
-  font-size: 0.8rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #7a9e6e;
-  margin: 0;
 }
 
 .envelope-wrapper {
@@ -562,8 +538,9 @@ p {
 }
 
 .tap-hint {
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.75rem;
-  color: #a0b899;
+  color: #3e2f22;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin: 0;
@@ -573,4 +550,25 @@ p {
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.4; }
+}
+
+
+@media (max-width: 480px) {
+  .ContenedorPadres {
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  .ContentCard {
+    width: 92%;
+    padding: 35px 15px;
+  }
+
+  .Nombre {
+    font-size: 2.8rem !important;
+  }
+  
+  .Anillos {
+    max-width: 280px;
+  }
 }

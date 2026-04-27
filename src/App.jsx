@@ -1,11 +1,24 @@
-import { useState, useRef } from 'react'
-import './App.css'
+import { useEffect, useMemo, useRef, useState } from 'react';
+import './App.css';
 
 const pases = {
   "Mer5T": 2,
   "Bod8X": 3,
   "Fst2K": 4,
 };
+
+function pad2(n) {
+  return String(n).padStart(2, '0');
+}
+
+function splitMs(ms) {
+  const totalSeconds = Math.floor(ms / 1000);
+  const days = Math.floor(totalSeconds / (60 * 60 * 24));
+  const hours = Math.floor((totalSeconds % (60 * 60 * 24)) / (60 * 60));
+  const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+  const seconds = totalSeconds % 60;
+  return { days, hours, minutes, seconds };
+}
 
 function App() {
   const [showMaps, setShowMaps] = useState(false);
@@ -14,8 +27,18 @@ function App() {
   const audioRef = useRef(null);
 
   const claveUrl = window.location.hash.replace('#', '') || null;
-  const invitados = claveUrl ? (pases[claveUrl] ?? null) : 0;
+  const invitados = claveUrl ? (pases[claveUrl] ?? null) : null;
 
+  const targetDate = useMemo(() => new Date(2026, 10, 28, 18, 0, 0), []);
+  const [now, setNow] = useState(new Date());
+
+  useEffect(() => {
+    const id = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  const diffMs = targetDate.getTime() - now.getTime();
+  const time = splitMs(Math.max(0, diffMs));
   const toggleMusic = () => {
     if (isPlaying) {
       audioRef.current.pause();
@@ -36,9 +59,9 @@ function App() {
     return (
       <div className="WelcomeScreen">
         <audio ref={audioRef} src="/Hastamifinal.mp3" loop />
-        <div className="WelcomeContent">
-          <p className="subtitulo">Tenemos el honor de invitarte a nuestra boda</p>
-          <p className="nombres">Ramón & Liliana</p>
+        <div className="WelcomePaper" role="button" tabIndex={0} onClick={handleStart} onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleStart()}>
+          <p className="TextoInicio">Por que el amor merece ser celebrado!!!</p>
+          <p className="Nombre">Liliana y Ramon</p>
           <div className="envelope-wrapper" onClick={handleStart}>
             <div className="envelope">
               <div className="envelope-flap"></div>
@@ -53,138 +76,155 @@ function App() {
     );
   }
 
-  return (
-    <>
-      <div className='Parent'>
-        <audio ref={audioRef} src="/Hastamifinal.mp3" loop />
 
-        <div className="blur-blob"></div>
-        <div className="blur-blob-2"></div>
 
-        <div className='DIVImagen'>
-          <img className='Anillos' src="fondo.jpeg" alt="Anillos" />
+    return (
+    <div className='Parent'>
+      <audio ref={audioRef} src="/Hastamifinal.mp3" loop autoPlay={isPlaying} />
+      
+      <div className="blur-blob"></div>
+      <div className="blur-blob-2"></div>
+
+      <p className='FraseSuperior'>NOS DIRÍAMOS QUE SÍ UN MILLÓN DE VECES, ¡ACOMPAÑANOS A CELEBRAR LA PRIMERA!</p>
+      <p className="Nombre">Liliana & Ramon</p>
+
+      <div className='DIVImagen2'>
+        <img className='Anillos' src="esposos.jpeg" alt="Nuestra Foto" />
+      </div>
+
+      <div className='ContentCard'>
+        <div className='Seccion'>
+          <p className='SubtituloSeccion'>Nuestra boda</p>
+          <p className='TextoSubtitulo'>Lo que empezó como una locura se convirtió en lo mejor de nuestras vidas.</p>
         </div>
 
-        <div className='ContentCard'>
-          <div className='Seccion'>
-            <p>Te esperamos para celebrar nuestro amor</p>
-          </div>
+        <div classname="separadorfloral"><span classname="simbolo"></span></div>
 
-          <div className='BloquePadrinos'>
-            <p className='NombrePadrino'>Ramón y Liliana</p>
+        <div className='Seccion'>
+          <p className='SubtituloSeccion'>SAVE THE DATE</p>
+          <p className='TextoSubtitulo'>28 de Noviembre, 2026</p>
+          
+          <div id="countdown">
+            <div><span>{pad2(time.days)}</span><small>Días</small></div>
+            <div><span>{pad2(time.hours)}</span><small>Hrs</small></div>
+            <div><span>{pad2(time.minutes)}</span><small>Min</small></div>
+            <div><span>{pad2(time.seconds)}</span><small>Seg</small></div>
           </div>
+        </div>
 
-          <div id="countdown" className="contador">
-            <div><span id="days">00</span><small>Días</small></div>
-            <div><span id="hours">00</span><small>Horas</small></div>
-            <div><span id="minutes">00</span><small>Min</small></div>
-            <div><span id="seconds">00</span><small>Seg</small></div>
-          </div>
+        <div className="SeparadorFloral"><span className="Simbolo"></span></div>
 
-          <div className='SeccionFamilia'>
-            <div className='ContenedorPadres'>
-              <div className='BloquePadres'>
-                <p className='TituloRol'>Papás de la Novia</p>
-                <p className='NombreFamiliar'>Adela Medina Reyes</p>
-                <p className='NombreFamiliar'>Benito Ramos Vargas</p>
-              </div>
-              <div className='BloquePadres'>
-                <p className='TituloRol'>Papás del Novio</p>
-                <p className='NombreFamiliar'>María Olivia Castillo Plata</p>
-                <p className='NombreFamiliar'>Casildo Espinoza Gómez</p>
-              </div>
+        <div className='Seccion'>
+          <p className='SubtituloSeccion'>Nuestros Padres</p>
+          <div className='ContenedorPadres'>
+            <div className='BloquePadres'>
+              <p className='TituloRol'>De la Novia</p>
+              <p className='NombreFamiliar'>Adela Medina Reyes</p>
+              <p className='NombreFamiliar'>Benito Ramos Vargas</p>
+            </div>
+            <div className='BloquePadres'>
+              <p className='TituloRol'>Del Novio</p>
+              <p className='NombreFamiliar'>María Olivia Castillo Plata</p>
+              <p className='NombreFamiliar'>Casildo Espinoza Gómez</p>
             </div>
           </div>
+        </div>
 
-          <div className='SeccionFamilia'>
-            <div className='ContenedorPadres'>
-              <div className='BloquePadres'>
-                <p className='TituloRol'>Padrinos de Velación</p>
-                <p className='NombreFamiliar'>Rubí Esmeralda Ramos Medina</p>
-                <p className='NombreFamiliar'>Oscar Omar García Navarrete</p>
-              </div>
-              <div className='BloquePadres'>
-                <p className='TituloRol'>Padrinos del Novio</p>
-                <p className='NombreFamiliar'>Esmeralda Yamilet Zepulveda Quevedo</p>
-                <p className='NombreFamiliar'>Javier Borboa Montes</p>
-              </div>
+
+
+        <div className='Seccion'>
+          <p className='SubtituloSeccion'>Padrinos de velación</p>
+          <div className='ContenedorPadres'>
+            <div className='BloquePadres'>
+              <p className='TituloRol'>De la Novia</p>
+              <p className='NombreFamiliar'> Rubí Esmeralda Ramos Medina </p>
+              <p className='NombreFamiliar'>Oscar Omar García Navarrete</p>
+            </div>
+            <div className='BloquePadres'>
+              <p className='TituloRol'>Del Novio</p>
+              <p className='NombreFamiliar'>Esmeralda Yamilet Sepulveda Quevedo</p>
+              <p className='NombreFamiliar'>Javier Borboa Montes</p>
             </div>
           </div>
+        </div>
 
-          <div className='DIVImagen2'>
-            <img className='CodigoQr' src="Vestido.png" alt="Traje" />
-            <img className='CodigoQr' src="dressCode.png" alt="Vestido" />
-            <p>Te esperamos con vestimenta formal</p>
-          </div>
+        <div className="SeparadorFloral"><span className="Simbolo"></span></div>
 
-          <div className='SeccionItinerario'>
-            <p className='TituloRol' style={{ fontSize: '1rem', marginBottom: '20px' }}>Nuestro Itinerario</p>
-            <div className='Timeline'>
-              <div className='TimelineItem'>
-                <div className='Time'>18:00</div>
-                <div className='Dot'></div>
-                <div className='ContentTimeline'>
-                  <p className='EventTitle'>Ceremonia</p>
-                  <p className='EventDesc'>Parroquia de San Felipe de Jesús</p>
-                </div>
+        <div className='SeccionItinerario'>
+          <p className='SubtituloSeccion'>Itinerario</p>
+          <div className='Timeline'>
+            <div className='TimelineItem'>
+              <div className='Time'>18:00</div>
+              <div className='Dot'></div>
+              <div className='ContentTimeline'>
+                <p className='EventTitle'>Ceremonia</p>
+                <p className='EventDesc'>Parroquia de San Felipe de Jesús</p>
               </div>
-              <div className='TimelineItem'>
-                <div className='Time'>19:45</div>
-                <div className='Dot'></div>
-                <div className='ContentTimeline'>
-                  <p className='EventTitle'>Recepción</p>
-                  <p className='EventDesc'>Jardín Rancho Campestre</p>
-                </div>
+            </div>
+            <div className='TimelineItem'>
+              <div className='Time'>19:45</div>
+              <div className='Dot'></div>
+              <div className='ContentTimeline'>
+                <p className='EventTitle'>Recepción</p>
+                <p className='EventDesc'>Jardín Rancho Campestre</p>
               </div>
             </div>
           </div>
 
           <div className='ContenedorDireccion'>
             <button className='button' onClick={() => setShowMaps(!showMaps)}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" className="svg-icon">
-                <g strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" stroke="#fff">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </g>
-              </svg>
-              <span className="lable">Ubicaciones</span>
+               <span className="lable">Ver Ubicaciones</span>
             </button>
             {showMaps && (
               <div className='SubMenuMapas'>
-                <a href="https://maps.app.goo.gl/1ceZTfJoWgFymBXp9?g_st=iw" target="_blank" className='SubBoton'>Misa</a>
-                <a href="https://maps.app.goo.gl/6hL9J18fZykK76Xz9?g_st=iw" target="_blank" className='SubBoton'>Jardín</a>
+                <a href="https://maps.app.goo.gl/1ceZTfJoWgFymBXp9?g_st=iw" target="_blank" target="_blank" className='SubBoton' rel="noreferrer">Misa</a>
+                <a href="https://maps.app.goo.gl/6hL9J18fZykK76Xz9?g_st=iw" target="_blank" target="_blank" className='SubBoton' rel="noreferrer">Jardín</a>
               </div>
             )}
           </div>
-
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdEm4944jIyXny2czKgdQrZHHT54ydrQvvgQPEXZRj36rsn5g/viewform" target="_blank" className="button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" className="svg-icon">
-              <g strokeWidth="2" strokeLinecap="round" stroke="#fff">
-                <rect y="5" x="4" width="16" rx="2" height="16"></rect>
-                <path d="m8 3v4"></path>
-                <path d="m16 3v4"></path>
-                <path d="m4 11h16"></path>
-              </g>
-            </svg>
-            <span className="lable">Confirma Asistencia</span>
-          </a>
-{invitados !== null && (
-  <div className='SeccionPase'>
-    <div className='TarjetaPase'>
-      <p className='TituloRol'>🎟 Pase de Invitado</p>
-      <p className='NombreFamiliar'>
-        {invitados === 0
-          ? 'Pase personal'
-          : <>Este pase es válido para <span className='NumeroPase'>{invitados} {invitados === 1 ? 'persona' : 'personas'}</span></>
-        }
-      </p>
-    </div>
-  </div>
-)}
         </div>
+
+        <div className="SeparadorFloral"><span className="Simbolo"></span></div>
+
+        <div className='Seccion'>
+          <p className='SubtituloSeccion'>Código de Vestimenta</p>
+          <p className='TextoSubtitulo'>Formal</p>
+          <div className='DIVImagen2'>
+            <img className='CodigoQr' src="Vestido.png" alt="Icono Vestimenta" />
+            <img className='CodigoQr' src="dressCode.png" alt="Icono Traje" />
+          </div>
+          <p className='TextoSubtitulo' style={{fontSize: '0.7rem', color: '#8d5d6a'}}>NOS RESERVAMOS EL BLANCO PARA LA NOVIA</p>
+        </div>
+
+
+        <div className="SeparadorFloral"><span className="Simbolo"></span></div>
+        <div className='Seccion'>
+           <p className='TextoSubtitulo'>Amamos a sus pequeños, pero queremos que en este día sólo tengan que preocuparse por pasarla increíble.</p>
+        </div>
+
+        {invitados !== null && (
+          <div className='SeccionPase'>
+            <div className='TarjetaPase'>
+              <p className='TituloRol'>🎟 Pase de Invitado</p>
+              <p className='NombreFamiliar'>
+                {invitados === 1 
+                  ? "Este pase es válido para 1 persona" 
+                  : `Este pase es válido para ${invitados} personas`}
+              </p>
+            </div>
+          </div>
+        )}
+
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSebFGFqqRE9t3XssG7lhhkHuYL3QswdFmZgIFnJ0-p4KyWLJA/viewform?usp=preview" target="_blank" className="button" rel="noreferrer">
+          <span className="lable">Confirmar Asistencia</span>
+        </a>
+
+        <p className='TextoSubtitulo' style={{marginTop: '20px'}}>
+          Tu presencia es lo más importante, pero si deseas hacernos un presente, agradeceríamos que fuera en efectivo.
+        </p>
       </div>
-    </>
+    </div>
   );
 }
 
-export default App
+export default App;
