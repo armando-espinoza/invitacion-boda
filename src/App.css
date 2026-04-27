@@ -438,7 +438,7 @@
 .WelcomeScreen {
   position: fixed;
   inset: 0;
-  background: linear-gradient(160deg, #f5f0e8 0%, #e8efe3 50%, #d4e4d0 100%);
+  background: linear-gradient(160deg, #ffffff 0%, #fbfaf8 50%, #f5f0e8 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -447,7 +447,7 @@
 
 .WelcomeContent {
   text-align: center;
-  color: #4a6741;
+  color: #3e2f22;
   display: flex;
   flex-direction: column;
   align-items: center;
