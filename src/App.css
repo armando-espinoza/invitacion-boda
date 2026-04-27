@@ -572,3 +572,12 @@
     max-width: 280px;
   }
 }
+
+
+
+.Cruz {
+  font-size: 1.2em;
+  color: #c4a876; 
+  margin-left: 4px;
+  vertical-align: middle;
+}

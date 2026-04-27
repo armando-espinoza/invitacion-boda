@@ -118,30 +118,28 @@ function App() {
           <p className='SubtituloSeccion'>Nuestros Padres</p>
           <div className='ContenedorPadres'>
             <div className='BloquePadres'>
-              <p className='TituloRol'>De la Novia</p>
+              <p className='TituloRol'> Novia</p>
               <p className='NombreFamiliar'>Adela Medina Reyes</p>
               <p className='NombreFamiliar'>Benito Ramos Vargas</p>
             </div>
             <div className='BloquePadres'>
-              <p className='TituloRol'>Del Novio</p>
-              <p className='NombreFamiliar'>María Olivia Castillo Plata</p>
+              <p className='TituloRol'> Novio</p>
+              <p className='NombreFamiliar'>María Olivia Castillo Plata <span className='Cruz' >†</span>  </p>
               <p className='NombreFamiliar'>Casildo Espinoza Gómez</p>
             </div>
           </div>
         </div>
 
-
-
         <div className='Seccion'>
           <p className='SubtituloSeccion'>Padrinos de velación</p>
           <div className='ContenedorPadres'>
             <div className='BloquePadres'>
-              <p className='TituloRol'>De la Novia</p>
+              <p className='TituloRol'> Novia</p>
               <p className='NombreFamiliar'> Rubí Esmeralda Ramos Medina </p>
               <p className='NombreFamiliar'>Oscar Omar García Navarrete</p>
             </div>
             <div className='BloquePadres'>
-              <p className='TituloRol'>Del Novio</p>
+              <p className='TituloRol'> Novio</p>
               <p className='NombreFamiliar'>Esmeralda Yamilet Sepulveda Quevedo</p>
               <p className='NombreFamiliar'>Javier Borboa Montes</p>
             </div>
