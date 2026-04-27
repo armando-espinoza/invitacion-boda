@@ -19,17 +19,28 @@ function splitMs(ms) {
   const seconds = totalSeconds % 60;
   return { days, hours, minutes, seconds };
 }
-
 function App() {
   const [showMaps, setShowMaps] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [started, setStarted] = useState(false);
+  const [invitados, setInvitados] = useState(null);
   const audioRef = useRef(null);
 
-  const claveUrl = window.location.hash.replace('#', '') || null;
-  const invitados = claveUrl ? (pases[claveUrl] ?? null) : null;
+  useEffect(() => {
+    const obtenerInvitados = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (!hash) {
+        setInvitados("personal");
+      } else {
+        const cantidad = pases[hash];
+        setInvitados(cantidad !== undefined ? cantidad : null);
+      }
+    };
 
-  const targetDate = useMemo(() => new Date(2026, 10, 28, 18, 0, 0), []);
+    obtenerInvitados(); 
+    window.addEventListener('hashchange', obtenerInvitados);
+    return () => window.removeEventListener('hashchange', obtenerInvitados);
+  }, []);  const targetDate = useMemo(() => new Date(2026, 10, 28, 18, 0, 0), []);
   const [now, setNow] = useState(new Date());
 
   useEffect(() => {
@@ -39,20 +50,14 @@ function App() {
 
   const diffMs = targetDate.getTime() - now.getTime();
   const time = splitMs(Math.max(0, diffMs));
-  const toggleMusic = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play();
-    }
-    setIsPlaying(!isPlaying);
-  };
 
   const handleStart = () => {
     setStarted(true);
-    audioRef.current.play()
-      .then(() => setIsPlaying(true))
-      .catch(() => setIsPlaying(false));
+    if (audioRef.current) {
+      audioRef.current.play()
+        .then(() => setIsPlaying(true))
+        .catch(() => setIsPlaying(false));
+    }
   };
 
   if (!started) {
@@ -62,7 +67,7 @@ function App() {
         <div className="WelcomePaper" role="button" tabIndex={0} onClick={handleStart} onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleStart()}>
           <p className="TextoInicio">Por que el amor merece ser celebrado!!!</p>
           <p className="Nombre">Liliana y Ramon</p>
-          <div className="envelope-wrapper" onClick={handleStart}>
+          <div className="envelope-wrapper">
             <div className="envelope">
               <div className="envelope-flap"></div>
               <div className="envelope-body">
@@ -76,9 +81,7 @@ function App() {
     );
   }
 
-
-
-    return (
+  return (
     <div className='Parent'>
       <audio ref={audioRef} src="/Hastamifinal.mp3" loop autoPlay={isPlaying} />
       
@@ -98,7 +101,7 @@ function App() {
           <p className='TextoSubtitulo'>Lo que empezó como una locura se convirtió en lo mejor de nuestras vidas.</p>
         </div>
 
-        <div classname="separadorfloral"><span classname="simbolo"></span></div>
+        <div className="SeparadorFloral"><span className="Simbolo"></span></div>
 
         <div className='Seccion'>
           <p className='SubtituloSeccion'>SAVE THE DATE</p>
@@ -114,39 +117,19 @@ function App() {
 
         <div className="SeparadorFloral"><span className="Simbolo"></span></div>
 
-        <div className='Seccion'>
-          <p className='SubtituloSeccion'>Nuestros Padres</p>
-          <div className='ContenedorPadres'>
-            <div className='BloquePadres'>
-              <p className='TituloRol'> Novia</p>
-              <p className='NombreFamiliar'>Adela Medina Reyes</p>
-              <p className='NombreFamiliar'>Benito Ramos Vargas</p>
-            </div>
-            <div className='BloquePadres'>
-              <p className='TituloRol'> Novio</p>
-              <p className='NombreFamiliar'>María Olivia Castillo Plata <span className='Cruz' >†</span>  </p>
-              <p className='NombreFamiliar'>Casildo Espinoza Gómez</p>
+        {invitados !== null && (
+          <div className='SeccionPase'>
+            <div className='TarjetaPase'>
+              <p className='TituloRol'>🎟 Pase de Invitado</p>
+              <p className='NombreFamiliar'>
+                {invitados === "personal" 
+                  ? "Este es un pase personal" 
+                  : <>Este pase es válido para <span className='NumeroPase'>{invitados} {invitados === 1 ? 'persona' : 'personas'}</span></>
+                }
+              </p>
             </div>
           </div>
-        </div>
-
-        <div className='Seccion'>
-          <p className='SubtituloSeccion'>Padrinos de velación</p>
-          <div className='ContenedorPadres'>
-            <div className='BloquePadres'>
-              <p className='TituloRol'> Novia</p>
-              <p className='NombreFamiliar'> Rubí Esmeralda Ramos Medina </p>
-              <p className='NombreFamiliar'>Oscar Omar García Navarrete</p>
-            </div>
-            <div className='BloquePadres'>
-              <p className='TituloRol'> Novio</p>
-              <p className='NombreFamiliar'>Esmeralda Yamilet Sepulveda Quevedo</p>
-              <p className='NombreFamiliar'>Javier Borboa Montes</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="SeparadorFloral"><span className="Simbolo"></span></div>
+        )}
 
         <div className='SeccionItinerario'>
           <p className='SubtituloSeccion'>Itinerario</p>
@@ -168,52 +151,9 @@ function App() {
               </div>
             </div>
           </div>
-
-          <div className='ContenedorDireccion'>
-            <button className='button' onClick={() => setShowMaps(!showMaps)}>
-               <span className="lable">Ver Ubicaciones</span>
-            </button>
-            {showMaps && (
-              <div className='SubMenuMapas'>
-                <a href="https://maps.app.goo.gl/1ceZTfJoWgFymBXp9?g_st=iw" target="_blank" target="_blank" className='SubBoton' rel="noreferrer">Misa</a>
-                <a href="https://maps.app.goo.gl/6hL9J18fZykK76Xz9?g_st=iw" target="_blank" target="_blank" className='SubBoton' rel="noreferrer">Jardín</a>
-              </div>
-            )}
-          </div>
         </div>
 
-        <div className="SeparadorFloral"><span className="Simbolo"></span></div>
-
-        <div className='Seccion'>
-          <p className='SubtituloSeccion'>Código de Vestimenta</p>
-          <p className='TextoSubtitulo'>Formal</p>
-          <div className='DIVImagen2'>
-            <img className='CodigoQr' src="Vestido.png" alt="Icono Vestimenta" />
-            <img className='CodigoQr' src="dressCode.png" alt="Icono Traje" />
-          </div>
-          <p className='TextoSubtitulo' style={{fontSize: '0.7rem', color: '#8d5d6a'}}>NOS RESERVAMOS EL BLANCO PARA LA NOVIA</p>
-        </div>
-
-
-        <div className="SeparadorFloral"><span className="Simbolo"></span></div>
-        <div className='Seccion'>
-           <p className='TextoSubtitulo'>Amamos a sus pequeños, pero queremos que en este día sólo tengan que preocuparse por pasarla increíble.</p>
-        </div>
-
-        {invitados !== null && (
-          <div className='SeccionPase'>
-            <div className='TarjetaPase'>
-              <p className='TituloRol'>🎟 Pase de Invitado</p>
-              <p className='NombreFamiliar'>
-                {invitados === 1 
-                  ? "Este pase es válido para 1 persona" 
-                  : `Este pase es válido para ${invitados} personas`}
-              </p>
-            </div>
-          </div>
-        )}
-
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSebFGFqqRE9t3XssG7lhhkHuYL3QswdFmZgIFnJ0-p4KyWLJA/viewform?usp=preview" target="_blank" className="button" rel="noreferrer">
+        <a href="https://docs.google.com/forms/..." target="_blank" className="button" rel="noreferrer">
           <span className="lable">Confirmar Asistencia</span>
         </a>
 

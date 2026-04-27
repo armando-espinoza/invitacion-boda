@@ -63,6 +63,24 @@ button:focus-visible {
   animation: fadeIn 2s ease-in-out;
 }
 
+.NumeroPase {
+  font-weight: 700;
+  color: #5e4d3b;
+  font-size: 1.2rem;
+}
+
+.TarjetaPase {
+  border: 1px dashed #c4a876;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  background: rgba(196, 168, 118, 0.05); /* Fondo crema muy tenue */
+  width: 90%;
+  margin: 20px auto; /* Centrado y con espacio */
+}
+
+
+
 @keyframes fadeIn {
   0% { opacity: 0; transform: translateY(20px); }
   100% { opacity: 1; transform: translateY(0); }
