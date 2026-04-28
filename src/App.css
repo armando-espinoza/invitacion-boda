@@ -70,18 +70,19 @@
   text-align: center;
   z-index: 2;
 }
-
 .Nombre {
   font-family: 'Great Vibes', cursive !important;
-  font-size: clamp(2.5rem, 12vw, 4rem) !important;
+  font-size: clamp( 4.5rem, 20vw, 10rem ) !important;
   color: #c4a876 !important;
-  margin: 10px auto !important;
+  margin: 20px auto !important;
   line-height: 1.2 !important;
   display: block;
   text-align: center;
+  line-height: 1.1 !important;
   width: 90%;
   z-index: 2;
 }
+
 
 .DIVImagen2 {
   display: flex;
@@ -125,19 +126,19 @@
   to { opacity: 1; transform: translateY(0); }
 }
 .SubtituloSeccion {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  width: 100%;
-  margin: 20px 0;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #8d5d6a;
-  text-transform: uppercase;
-  letter-spacing: 3px;
+  font-family: 'Great Vibes', cursive !important;
+  font-size: clamp( 2rem, 10vw, 5rem ) !important;
+  color: #c4a876 !important;
+  margin: 20px auto !important;
+  line-height: 1.2 !important;
+  display: block;
+  text-align: center;
+  line-height: 1.1 !important;
+  width: 90%;
+  z-index: 2;
 }
+
+
 
 .SubtituloSeccion::before,
 .SubtituloSeccion::after {
@@ -571,13 +572,4 @@
   .Anillos {
     max-width: 280px;
   }
-}
-
-
-
-.Cruz {
-  font-size: 1.2em;
-  color: #c4a876; 
-  margin-left: 4px;
-  vertical-align: middle;
 }
