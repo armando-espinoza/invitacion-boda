@@ -573,3 +573,12 @@
     max-width: 280px;
   }
 }
+.cruz {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #8d5d6a;
+  margin-left: 8px;
+  opacity: 0.8;
+  vertical-align: middle;
+}

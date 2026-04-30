@@ -94,14 +94,14 @@ function App() {
 
       <div className='ContentCard'>
         <div className='Seccion'>
-          <p className='SubtituloSeccion'>Nuestra boda</p>
+          <p className='SubtituloSeccion'>Nuestra Boda</p>
           <p className='TextoSubtitulo'>Lo que empezó como una locura se convirtió en lo mejor de nuestras vidas.</p>
         </div>
 
         <div classname="separadorfloral"><span classname="simbolo"></span></div>
 
         <div className='Seccion'>
-          <p className='SubtituloSeccion'>save the date</p>
+          <p className='SubtituloSeccion'>Save the Date</p>
           <p className='TextoSubtitulo'>28 de Noviembre, 2026</p>
           
           <div id="countdown">
@@ -118,34 +118,35 @@ function App() {
           <p className='SubtituloSeccion'>Nuestros Padres</p>
           <div className='ContenedorPadres'>
             <div className='BloquePadres'>
-              <p className='TituloRol'>De la Novia</p>
+              <p className='TituloRol'>Novia</p>
               <p className='NombreFamiliar'>Adela Medina Reyes</p>
               <p className='NombreFamiliar'>Benito Ramos Vargas</p>
             </div>
+          </div>
+        </div>
+         <div className='Seccion'>
+           <p className='TituloRol'> Novio </p>
+           <p className='NombreFamiliar'> Maria Olivia Castillo Plata <span className="cruz">†</span></p>
+           <p className='NombreFamiliar'> Casildo Espinoza Gómez </p>
+         </div>
+
+
+        <div className='Seccion'>
+          <p className='SubtituloSeccion'>Padrinos de Velación</p>
+          <div className='ContenedorPadres'>
             <div className='BloquePadres'>
-              <p className='TituloRol'>Del Novio</p>
-              <p className='NombreFamiliar'>María Olivia Castillo Plata</p>
-              <p className='NombreFamiliar'>Casildo Espinoza Gómez</p>
+              <p className='TituloRol'> Novia</p>
+              <p className='NombreFamiliar'> Rubí Esmeralda Ramos Medina </p>
+              <p className='NombreFamiliar'>Oscar Omar García Navarrete</p>
             </div>
           </div>
         </div>
 
 
-
         <div className='Seccion'>
-          <p className='SubtituloSeccion'>Padrinos de velación</p>
-          <div className='ContenedorPadres'>
-            <div className='BloquePadres'>
-              <p className='TituloRol'>De la Novia</p>
-              <p className='NombreFamiliar'> Rubí Esmeralda Ramos Medina </p>
-              <p className='NombreFamiliar'>Oscar Omar García Navarrete</p>
-            </div>
-            <div className='BloquePadres'>
-              <p className='TituloRol'>Del Novio</p>
-              <p className='NombreFamiliar'>Esmeralda Yamilet Sepulveda Quevedo</p>
-              <p className='NombreFamiliar'>Javier Borboa Montes</p>
-            </div>
-          </div>
+          <p className='TituloRol'> Novio </p>
+          <p className='NombreFamiliar'> Esmeralda Yamilet Sepulveda Quedvedo </p>
+          <p className='NombreFamiliar'> Javier Borboa Montes </p>
         </div>
 
         <div className="SeparadorFloral"><span className="Simbolo"></span></div>
