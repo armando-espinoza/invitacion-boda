@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;600;700&family=Dancing+Script:wght@400;700&family=Ms+Madi&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap');
+
 
 * {
   margin: 0;
@@ -71,7 +72,7 @@
   z-index: 2;
 }
 .Nombre {
-  font-family: 'Great Vibes', cursive !important;
+  font-family: 'Pinyon Script', cursive !important;
   font-size: clamp( 4.5rem, 20vw, 10rem ) !important;
   color: #c4a876 !important;
   margin: 20px auto !important;
@@ -126,7 +127,7 @@
   to { opacity: 1; transform: translateY(0); }
 }
 .SubtituloSeccion {
-  font-family: 'Great Vibes', cursive !important;
+  font-family: 'Pinyon Script', cursive !important;
   font-size: clamp( 2rem, 10vw, 5rem ) !important;
   color: #c4a876 !important;
   margin: 20px auto !important;
@@ -576,7 +577,7 @@
 .cruz {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 0.9rem;
+  font-size: 1.9rem;
   color: #8d5d6a;
   margin-left: 8px;
   opacity: 0.8;

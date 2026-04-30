@@ -61,7 +61,7 @@ function App() {
         <audio ref={audioRef} src="/Hastamifinal.mp3" loop />
         <div className="WelcomePaper" role="button" tabIndex={0} onClick={handleStart} onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleStart()}>
           <p className="TextoInicio">Por que el amor merece ser celebrado!!!</p>
-          <p className="Nombre">Liliana y Ramon</p>
+          <p className="Nombre">Liliana y Ramón</p>
           <div className="envelope-wrapper" onClick={handleStart}>
             <div className="envelope">
               <div className="envelope-flap"></div>
@@ -86,7 +86,7 @@ function App() {
       <div className="blur-blob-2"></div>
 
       <p className='FraseSuperior'>NOS DIRÍAMOS QUE SÍ UN MILLÓN DE VECES, ¡ACOMPAÑANOS A CELEBRAR LA PRIMERA!</p>
-      <p className="Nombre">Liliana y Ramon</p>
+      <p className="Nombre">Liliana y Ramón</p>
 
       <div className='DIVImagen2'>
         <img className='Anillos' src="esposos.jpeg" alt="Nuestra Foto" />
