@@ -145,7 +145,7 @@ function App() {
 
         <div className='Seccion'>
           <p className='TituloRol'> Novio </p>
-          <p className='NombreFamiliar'> Esmeralda Yamilet Sepulveda Quedvedo </p>
+          <p className='NombreFamiliar'> Esmeralda Yamilet Sepulveda Quevedo </p>
           <p className='NombreFamiliar'> Javier Borboa Montes </p>
         </div>
 
